@@ -1,28 +1,54 @@
 #création du fichier
 def crer():
-    nomFichier = str(input("Nom du fichier : "))
-    fichier = open(nomFichier, "w+")
-    fichier.close()
+    while True:
+        try:
+            nomFichier = str(input("Nom du fichier : "))
+            fichier = open(nomFichier, "w+")
+        except OSError as err:
+            print("OS error: {0}".format(err))
+        else:
+            fichier.close()
+            print("you have created the fichier")
+            break
 
 #écriture dans le fichier
 def ecrire():
-    nomFichier = str(input("Nom du fichier : "))
-    fichier = open(nomFichier, "a")
-    fichier.write("\n"+str(input("Entrez le texte : \n")))
-    fichier.close()
+    while True:
+        try:
+            nomFichier = str(input("Nom du fichier : "))
+            fichier = open(nomFichier, "a")
+            fichier.write("\n" + str(input("Entrez le texte : \n")))
+        except OSError as err:
+            print("OS error: {0}".format(err))
+        else:
+            fichier.close()
+            break
+
 
 #lecture du fichier
 def lire():
-    nomFichier = str(input("Nom du fichier : "))
-    fichier = open(nomFichier, "r")
-    print(fichier.read())
-    fichier.close()
+    while True:
+        try:
+            nomFichier = str(input("Nom du fichier : "))
+            fichier = open(nomFichier, "r")
+            print(fichier.read())
+        except OSError as err:
+            print("OS error: {0}".format(err))
+        else:
+            fichier.close()
+            break
 
 #vider le contenu du fichier
 def vider():
-    nomFichier = str(input("Nom du fichier : "))
-    fichier = open(nomFichier, "w")
-    fichier.close()
+    while True:
+        try:
+            nomFichier = str(input("Nom du fichier : "))
+            fichier = open(nomFichier, "w")
+        except OSError as err:
+            print("OS error: {0}".format(err))
+        else:
+            fichier.close()
+            break
 
 #Création du menu
 def main():
@@ -35,20 +61,29 @@ def main():
     choix = 0
 
     while choix != 9:
-        choix = int(input("Entrez votre choix : "))
 
-        if choix == 1:
-            crer()
-        elif choix == 2:
-            ecrire()
-        elif choix == 3:
-            lire()
-        elif choix == 4:
-            vider()
-        elif choix == 9:
-            exit()
-        else:
-            print("Choix non valide!")
+        while True:
+            try:
+                choix = int(input("Entrez votre choix : "))
+                if choix == 1:
+                    crer()
+                elif choix == 2:
+                    ecrire()
+                elif choix == 3:
+                    lire()
+                elif choix == 4:
+                    vider()
+                elif choix == 9:
+                    exit()
+                else:
+                    print("Choix non valide!")
+                break
+            except ValueError:
+                print("Oops!  That was no valid number.  Try again   ")
+            finally:
+                print("------------------")
+
 
 if __name__ == '__main__':
     main()
+

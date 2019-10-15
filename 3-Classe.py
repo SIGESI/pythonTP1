@@ -68,23 +68,35 @@ class Etudiant:
                         #etu1.adresselec()
                         #etu1.age()
 
-csvFile = open("fichetu1.csv", "r")
-reader = csv.reader(csvFile)
-listEtu=[]
+def main():
 
-for item in reader:
-    time0=time.strptime(item[2],'%d/%m/%Y') #item[0]为当前迭代（当前行）的第一个元素
-    date0=Date(time0.tm_mday,time0.tm_mon,time0.tm_year)
-    etu=Etudiant(item[0],item[1],date0)
-    listEtu.append(etu)  #list 追加
+    try:
+        csvFile = open("fichetu.csv", "r")
+        reader = csv.reader(csvFile)
+        listEtu = []
+    except OSError as err:
+        print("OS error: {0}".format(err))
+    finally:
+        csvFile.close()
 
-                        #test
-                        #list[reader.line_num]=etu
-                        #print(etu.adresselec())
+    for item in reader:
+        time0 = time.strptime(item[2], '%d/%m/%Y')  # item[0]为当前迭代（当前行）的第一个元素
+        date0 = Date(time0.tm_mday, time0.tm_mon, time0.tm_year)
+        etu = Etudiant(item[0], item[1], date0)
+        listEtu.append(etu)  # list 追加
+
+        # test
+        # list[reader.line_num]=etu
+        # print(etu.adresselec())
+
+    listEtu[25].adresselec()
+    listEtu[5].age()
 
 
-listEtu[0].adresselec()
-listEtu[0].age()
+
+if __name__ == '__main__':
+    main()
+
 
 #连续赋值及比较实验，
 #   1   1   =   1
